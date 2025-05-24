@@ -67,17 +67,62 @@
       display: none;
     }
 
+    .output-container {
+      position: relative;
+      margin-top: 1rem;
+    }
+
     #output {
       background: rgba(0, 0, 0, 0.5);
       padding: 1rem;
       border-radius: 10px;
-      margin-top: 1rem;
       min-height: 100px;
       white-space: pre-wrap;
       text-align: left;
       font-size: 1rem;
       color: #e0e1dd;
       border: 1px solid #00ffff;
+    }
+
+    .copy-btn {
+      background: #00ff00;
+      color: #fff;
+      padding: 0.6rem 1rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #00ff00;
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+    }
+
+    .copy-btn:hover {
+      background: #33ff33;
+      box-shadow: 0 0 20px #00ff00;
+      transform: scale(1.05);
+    }
+
+    .copy-btn::after {
+      content: 'Copy Text';
+      position: absolute;
+      top: -2.5rem;
+      right: 0;
+      background: rgba(0, 0, 0, 0.8);
+      color: #00ff00;
+      padding: 0.3rem 0.6rem;
+      border-radius: 5px;
+      font-size: 0.8rem;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+
+    .copy-btn.copied::after {
+      content: 'Copied!';
+      opacity: 1;
     }
 
     .loading {
@@ -143,7 +188,10 @@
     <input type="file" id="imageInput" accept="image/*">
     <img id="preview" alt="Image Preview">
     <div id="loading" class="loading">Processing...</div>
-    <div id="output">Extracted text will appear here...</div>
+    <div class="output-container">
+      <div id="output">Extracted text will appear here...</div>
+      <button id="copyBtn" class="copy-btn"></button>
+    </div>
     <div class="footer">
       <div>
         Powered by <a href="https://github.com/openmindednewby/OCROnTheWeb" target="_blank">openmindednewby OCROnTheWeb</a>
@@ -163,6 +211,7 @@
     const preview = document.getElementById('preview');
     const output = document.getElementById('output');
     const loading = document.getElementById('loading');
+    const copyBtn = document.getElementById('copyBtn');
 
     imageInput.addEventListener('change', async (event) => {
       const file = event.target.files[0];
@@ -184,6 +233,20 @@
         output.textContent = 'Error processing image: ' + error.message;
       } finally {
         loading.style.display = 'none';
+      }
+    });
+
+    copyBtn.addEventListener('click', () => {
+      const text = output.textContent;
+      if (text && text !== 'Extracted text will appear here...' && text !== 'No text detected.') {
+        navigator.clipboard.writeText(text).then(() => {
+          copyBtn.classList.add('copied');
+          setTimeout(() => {
+            copyBtn.classList.remove('copied');
+          }, 2000);
+        }).catch((err) => {
+          console.error('Failed to copy text: ', err);
+        });
       }
     });
   </script>
