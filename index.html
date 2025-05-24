@@ -8,14 +8,13 @@
     body {
       margin: 0;
       padding: 0;
-      height: 100vh;
+      min-height: 100vh;
       display: flex;
       justify-content: center;
       align-items: center;
       background: linear-gradient(135deg, #0d1b2a, #1b263b);
       font-family: 'Orbitron', sans-serif;
       color: #e0e1dd;
-      overflow: hidden;
     }
 
     .container {
@@ -95,6 +94,25 @@
       100% { opacity: 1; }
     }
 
+    .footer {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: #778da9;
+      opacity: 0.7;
+      transition: opacity 0.3s ease;
+    }
+
+    .footer a {
+      color: #00ffff;
+      text-decoration: none;
+      text-shadow: 0 0 5px #00ffff;
+    }
+
+    .footer a:hover {
+      opacity: 1;
+      text-shadow: 0 0 10px #00ffff;
+    }
+
     /* Futuristic font from Google Fonts */
     @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
   </style>
@@ -107,6 +125,17 @@
     <img id="preview" alt="Image Preview">
     <div id="loading" class="loading">Processing...</div>
     <div id="output">Extracted text will appear here...</div>
+    <div class="footer">
+        <div>
+              Powered by <a href="https://github.com/openmindednewby/OCROnTheWeb" target="_blank">openmindednewby OCROnTheWeb</a>
+        </div>
+        <div>
+              More at <a href="https://www.dloizides.com/" target="_blank">https://www.dloizides.com/</a>
+        </div>
+        <div>
+              This is not your usual scetchy website that extracts your image and sends it to a server. Everything is done locally in your browser. The ocr is performed using <a href="https://tesseract.projectnaptha.com/" target="_blank">Tesseract.js</a> which is a pure javascript port of the Tesseract OCR engine.
+        </div>
+    </div>
   </div>
 
   <script src="https://unpkg.com/tesseract.js@5.1.0/dist/tesseract.min.js"></script>
