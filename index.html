@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Futuristic OCR Scanner</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <style>
     body {
       margin: 0;
@@ -87,7 +88,7 @@
     .copy-btn {
       background: #00ff00;
       color: #fff;
-      padding: 0.6rem 1rem;
+      padding: 0.5rem;
       border: none;
       border-radius: 5px;
       cursor: pointer;
@@ -97,19 +98,24 @@
       position: absolute;
       top: 0.5rem;
       right: 0.5rem;
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     .copy-btn:hover {
       background: #33ff33;
       box-shadow: 0 0 20px #00ff00;
-      transform: scale(1.05);
+      transform: scale(1.1);
     }
 
     .copy-btn::after {
-      content: 'Copy Text';
+      content: 'Copy';
       position: absolute;
-      top: -2.5rem;
-      right: 0;
+      top: -2.2rem;
+      right: -0.5rem;
       background: rgba(0, 0, 0, 0.8);
       color: #00ff00;
       padding: 0.3rem 0.6rem;
@@ -123,6 +129,10 @@
     .copy-btn.copied::after {
       content: 'Copied!';
       opacity: 1;
+    }
+
+    .copy-btn i {
+      font-size: 1.2rem;
     }
 
     .loading {
@@ -190,7 +200,7 @@
     <div id="loading" class="loading">Processing...</div>
     <div class="output-container">
       <div id="output">Extracted text will appear here...</div>
-      <button id="copyBtn" class="copy-btn"></button>
+      <button id="copyBtn" class="copy-btn"><i class="fas fa-copy"></i></button>
     </div>
     <div class="footer">
       <div>
