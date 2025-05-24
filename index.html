@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Futuristic OCR Scanner</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(135deg, #0d1b2a, #1b263b);
+      font-family: 'Orbitron', sans-serif;
+      color: #e0e1dd;
+      overflow: hidden;
+    }
+
+    .container {
+      background: rgba(27, 38, 59, 0.8);
+      backdrop-filter: blur(10px);
+      padding: 2rem;
+      border-radius: 15px;
+      box-shadow: 0 0 20px rgba(0, 255, 255, 0.5);
+      text-align: center;
+      width: 80%;
+      max-width: 600px;
+      border: 1px solid #00ffff;
+    }
+
+    h1 {
+      font-size: 2.5rem;
+      color: #00ffff;
+      text-shadow: 0 0 10px #00ffff;
+      margin-bottom: 1.5rem;
+    }
+
+    input[type="file"] {
+      display: none;
+    }
+
+    .upload-btn {
+      background: #ff00ff;
+      color: #fff;
+      padding: 0.8rem 1.5rem;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 1.2rem;
+      transition: all 0.3s ease;
+      box-shadow: 0 0 10px #ff00ff;
+    }
+
+    .upload-btn:hover {
+      background: #ff33ff;
+      box-shadow: 0 0 20px #ff00ff;
+      transform: scale(1.05);
+    }
+
+    #preview {
+      max-width: 100%;
+      max-height: 300px;
+      margin: 1rem 0;
+      border-radius: 10px;
+      border: 2px solid #00ffff;
+      display: none;
+    }
+
+    #output {
+      background: rgba(0, 0, 0, 0.5);
+      padding: 1rem;
+      border-radius: 10px;
+      margin-top: 1rem;
+      min-height: 100px;
+      white-space: pre-wrap;
+      text-align: left;
+      font-size: 1rem;
+      color: #e0e1dd;
+      border: 1px solid #00ffff;
+    }
+
+    .loading {
+      display: none;
+      font-size: 1.2rem;
+      color: #00ff00;
+      text-shadow: 0 0 10px #00ff00;
+      animation: pulse 1.5s infinite;
+    }
+
+    @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.5; }
+      100% { opacity: 1; }
+    }
+
+    /* Futuristic font from Google Fonts */
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>OCR Scanner</h1>
+    <label for="imageInput" class="upload-btn">Upload Image</label>
+    <input type="file" id="imageInput" accept="image/*">
+    <img id="preview" alt="Image Preview">
+    <div id="loading" class="loading">Processing...</div>
+    <div id="output">Extracted text will appear here...</div>
+  </div>
+
+  <script src="https://unpkg.com/tesseract.js@5.1.0/dist/tesseract.min.js"></script>
+  <script>
+    const imageInput = document.getElementById('imageInput');
+    const preview = document.getElementById('preview');
+    const output = document.getElementById('output');
+    const loading = document.getElementById('loading');
+
+    imageInput.addEventListener('change', async (event) => {
+      const file = event.target.files[0];
+      if (!file) return;
+
+      // Display image preview
+      preview.src = URL.createObjectURL(file);
+      preview.style.display = 'block';
+      output.textContent = 'Extracted text will appear here...';
+      loading.style.display = 'block';
+
+      try {
+        const { createWorker } = Tesseract;
+        const worker = await createWorker('eng');
+        const { data: { text } } = await worker.recognize(file);
+        output.textContent = text || 'No text detected.';
+        await worker.terminate();
+      } catch (error) {
+        output.textContent = 'Error processing image: ' + error.message;
+      } finally {
+        loading.style.display = 'none';
+      }
+    });
+  </script>
+</body>
+</html>
