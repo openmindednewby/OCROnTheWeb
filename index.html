@@ -16,25 +16,36 @@
   <meta name="twitter:title" content="Futuristic OCR Scanner - Extract Text from Images">
   <meta name="twitter:description" content="Extract text from images locally in your browser with our Tesseract.js-powered OCR scanner. Secure, fast, and futuristic.">
   <meta name="twitter:image" content="https://www.ocr-scanner.dloizides.com/ocr-scanner-preview.jpg">
+  <meta http-equiv="Content-Security-Policy" content="
+    default-src 'self';
+    script-src 'self' https://cdn.jsdelivr.net https://unpkg.com 'wasm-unsafe-eval';
+    worker-src 'self' blob:;
+    connect-src 'self' blob: data: https://cdn.jsdelivr.net https://unpkg.com;
+    style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com;
+    font-src https://fonts.gstatic.com https://cdnjs.cloudflare.com;
+    img-src 'self' https://www.ocr-scanner.dloizides.com data: blob:;
+    object-src 'none';
+    base-uri 'self';
+  ">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Delius&display=swap">
   <link rel="stylesheet" href="styles.css">
   <link rel="canonical" href="https://www.ocr-scanner.dloizides.com">
   <title>Futuristic OCR Scanner</title>
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "SoftwareApplication",
-    "name": "Futuristic OCR Scanner",
-    "operatingSystem": "Web",
-    "applicationCategory": "UtilityApplication",
-    "description": "A browser-based OCR scanner that extracts text from images locally using Tesseract.js.",
-    "url": "https://www.ocr-scanner.dloizides.com",
-    "author": {
-      "@type": "Person",
-      "name": "openmindednewby"
-    }
+  <script type="application/ld+json" nonce="abc123">
+{
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  "name": "Futuristic OCR Scanner",
+  "operatingSystem": "Web",
+  "applicationCategory": "UtilityApplication",
+  "description": "A browser-based OCR scanner that extracts text from images locally using Tesseract.js.",
+  "url": "https://www.ocr-scanner.dloizides.com",
+  "author": {
+    "@type": "Person",
+    "name": "openmindednewby"
   }
+}
   </script>
 </head>
 
