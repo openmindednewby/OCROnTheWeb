@@ -4,11 +4,12 @@ const output = document.getElementById('output');
 const loading = document.getElementById('loading');
 const copyBtn = document.getElementById('copyBtn');
 const dropZone = document.getElementById('dropZone');
+const pasteBtn = document.getElementById('pasteBtn');
 
-// Process the image file (shared logic for both upload and drag-and-drop)
+// Process the image file (shared logic for upload, drag-and-drop, and paste)
 async function processImage(file) {
   if (!file || !file.type.startsWith('image/')) {
-    output.textContent = 'Please upload or drop a valid image file.';
+    output.textContent = 'Please upload, drop, or paste a valid image file.';
     preview.style.display = 'none';
     loading.style.display = 'none';
     return;
@@ -68,6 +69,28 @@ dropZone.addEventListener('keydown', (event) => {
   if (event.key === 'Enter' || event.key === ' ') {
     event.preventDefault();
     imageInput.click();
+  }
+});
+
+// Paste button functionality
+pasteBtn.addEventListener('click', async () => {
+  try {
+    const clipboardItems = await navigator.clipboard.read();
+    for (const item of clipboardItems) {
+      if (item.types.includes('image/png') || item.types.includes('image/jpeg')) {
+        const blob = await item.getType(item.types.find(type => type.startsWith('image/')));
+        processImage(blob);
+        return; // Process only the first valid image
+      }
+    }
+    output.textContent = 'No valid image found in clipboard.';
+    preview.style.display = 'none';
+    loading.style.display = 'none';
+  } catch (error) {
+    console.error('Error accessing clipboard:', error);
+    output.textContent = 'Error pasting image: ' + error.message;
+    preview.style.display = 'none';
+    loading.style.display = 'none';
   }
 });
 
