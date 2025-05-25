@@ -16,3 +16,4 @@ Simple OCR Model 100% Free that runs on the browser using **tesseract.js** https
   - ⚠️Strict-Transport-Security Header Not Set
   - ⚠️X-Content-Type-Options Header Missing
 - ✅ CEO
+- ✅ PWA
