@@ -42,26 +42,32 @@
 
 <body>
   <div class="container">
-    <h1>OCR Scanner</h1>
+    <header>
+      <h1>OCR Scanner</h1>
+    </header>
+    <main>
       <label for="imageInput" class="upload-btn">Upload Image</label>
-    <input type="file" id="imageInput" accept="image/*">
-    <img id="preview" alt="Image Preview">
-    <div id="loading" class="loading">Processing...</div>
-      <div class="output-container">
-      <div id="output">Extracted text will appear here...</div>
-      <button id="copyBtn" class="copy-btn" aria-label="Copy extracted text to clipboard"><i class="fas fa-copy"></i></button>
+      <input type="file" id="imageInput" accept="image/*">
+      <img id="preview" alt="Image Preview">
+      <div id="loading" class="loading">Processing...</div>
+        <div class="output-container">
+        <div id="output">Extracted text will appear here...</div>
+        <button id="copyBtn" class="copy-btn" aria-label="Copy extracted text to clipboard"><i class="fas fa-copy"></i></button>
       </div>
-    <div class="footer">
-      <div>
-        Powered by <a href="https://github.com/openmindednewby/OCROnTheWeb" target="_blank" rel="noopener">openmindednewby OCROnTheWeb</a>
+    </mai
+    <footer>
+      <div class="footer">
+        <div>
+          Powered by <a href="https://github.com/openmindednewby/OCROnTheWeb" target="_blank" rel="noopener">openmindednewby OCROnTheWeb</a>
+        </div>
+        <div>
+          More at <a href="https://www.dloizides.com/" target="_blank" rel="noopener">https://www.dloizides.com/</a>
+        </div>
       </div>
-      <div>
-        More at <a href="https://www.dloizides.com/" target="_blank" rel="noopener">https://www.dloizides.com/</a>
+      <div class="bottom-text">
+        This is not your usual sketchy website that extracts your image and sends it to a server. Everything is done locally in your browser. The OCR is performed using <a href="https://tesseract.projectnaptha.com/" target="_blank" rel="noopener">Tesseract.js</a>, a pure JavaScript port of the Tesseract OCR engine.
       </div>
-    </div>
-    <div class="bottom-text">
-      This is not your usual sketchy website that extracts your image and sends it to a server. Everything is done locally in your browser. The OCR is performed using <a href="https://tesseract.projectnaptha.com/" target="_blank" rel="noopener">Tesseract.js</a>, a pure JavaScript port of the Tesseract OCR engine.
-    </div>
+    </footer>
   </div>
 
   <script src="https://unpkg.com/tesseract.js@5.1.0/dist/tesseract.min.js"></script>
