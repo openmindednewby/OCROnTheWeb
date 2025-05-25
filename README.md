@@ -1,4 +1,5 @@
 # OCROnTheWeb
+Live on https://ocr-scanner.dloizides.com/
 Simple OCR Model 100% Free that runs on the browser using **tesseract.js** https://github.com/naptha/tesseract.js
 
 ![alt text](ocr-scanner-preview.jpg)
