@@ -3,14 +3,25 @@ const preview = document.getElementById('preview');
 const output = document.getElementById('output');
 const loading = document.getElementById('loading');
 const copyBtn = document.getElementById('copyBtn');
+const dropZone = document.getElementById('dropZone');
 
-imageInput.addEventListener('change', async (event) => {
-  const file = event.target.files[0];
-  if (!file) return;
+// Process the image file (shared logic for both upload and drag-and-drop)
+async function processImage(file) {
+  if (!file || !file.type.startsWith('image/')) {
+    output.textContent = 'Please upload or drop a valid image file.';
+    preview.style.display = 'none';
+    loading.style.display = 'none';
+    return;
+  }
 
-  // Display image preview
-  preview.src = URL.createObjectURL(file);
-  preview.style.display = 'block';
+  try {
+    const url = URL.createObjectURL(file);
+    preview.src = url;
+    preview.style.display = 'block';
+  } catch (error) {
+    console.error('Error creating object URL:', error);
+    preview.style.display = 'none';
+  }
   output.textContent = 'Extracted text will appear here...';
   loading.style.display = 'block';
 
@@ -25,8 +36,42 @@ imageInput.addEventListener('change', async (event) => {
   } finally {
     loading.style.display = 'none';
   }
+}
+
+// File input change event (for clicking "Upload Image")
+imageInput.addEventListener('change', async (event) => {
+  const file = event.target.files[0];
+  if (!file) return;
+  processImage(file);
 });
 
+// Drag-and-drop functionality
+dropZone.addEventListener('dragover', (event) => {
+  event.preventDefault();
+  dropZone.classList.add('drag-over');
+});
+
+dropZone.addEventListener('dragleave', () => {
+  dropZone.classList.remove('drag-over');
+});
+
+dropZone.addEventListener('drop', (event) => {
+  event.preventDefault();
+  dropZone.classList.remove('drag-over');
+  const file = event.dataTransfer.files[0];
+  if (!file) return;
+  processImage(file);
+});
+
+// Keyboard support for drag-and-drop area
+dropZone.addEventListener('keydown', (event) => {
+  if (event.key === 'Enter' || event.key === ' ') {
+    event.preventDefault();
+    imageInput.click();
+  }
+});
+
+// Copy button functionality
 copyBtn.addEventListener('click', () => {
   const text = output.textContent;
   if (text && text !== 'Extracted text will appear here...' && text !== 'No text detected.') {
