@@ -31,6 +31,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Delius&display=swap">
   <link rel="stylesheet" href="styles.css">
   <link rel="canonical" href="https://www.ocr-scanner.dloizides.com">
+  <link rel="manifest" href="/manifest.json">
   <title>Futuristic OCR Scanner</title>
   <script type="application/ld+json" nonce="abc123">
 {
@@ -84,6 +85,19 @@
     </footer>
   </div>
 
+  <script>
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/service-worker.js')
+          .then((registration) => {
+            console.log('Service Worker registered:', registration);
+          })
+          .catch((error) => {
+            console.error('Service Worker registration failed:', error);
+          });
+      });
+    }
+  </script>
   <script src="https://unpkg.com/tesseract.js@5.1.0/dist/tesseract.min.js"></script>
   <script src="script.js"></script>
 </body>
