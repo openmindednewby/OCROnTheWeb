@@ -3,6 +3,6 @@ Simple OCR Model 100% Free that runs on the browser using **tesseract.js** https
 
 ## Addons
 
-- Accessibility rating?
-- OWASP rating?
-- CEO rating?
+- ✅ Accessibility checked using WAVE https://wave.webaim.org/extension/
+- OWASP
+- ✅ CEO
