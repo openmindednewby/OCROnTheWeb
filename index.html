@@ -18,7 +18,7 @@
   <meta name="twitter:image" content="https://www.ocr-scanner.dloizides.com/ocr-scanner-preview.jpg">
   <meta http-equiv="Content-Security-Policy" content="
     default-src 'self';
-    script-src 'self' https://cdn.jsdelivr.net https://unpkg.com 'wasm-unsafe-eval';
+    script-src 'self' 'unsafe-inline'  https://cdn.jsdelivr.net https://unpkg.com 'wasm-unsafe-eval';
     worker-src 'self' blob:;
     connect-src 'self' blob: data: https://cdn.jsdelivr.net https://unpkg.com;
     style-src 'self' https://cdnjs.cloudflare.com https://fonts.googleapis.com;
@@ -27,26 +27,26 @@
     object-src 'none';
     base-uri 'self';
   ">
+  <link rel="manifest" href="/manifest.json">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Delius&display=swap">
   <link rel="stylesheet" href="styles.css">
   <link rel="canonical" href="https://www.ocr-scanner.dloizides.com">
-  <link rel="manifest" href="/manifest.json">
   <title>Futuristic OCR Scanner</title>
   <script type="application/ld+json" nonce="abc123">
-{
-  "@context": "https://schema.org",
-  "@type": "SoftwareApplication",
-  "name": "Futuristic OCR Scanner",
-  "operatingSystem": "Web",
-  "applicationCategory": "UtilityApplication",
-  "description": "A browser-based OCR scanner that extracts text from images locally using Tesseract.js.",
-  "url": "https://www.ocr-scanner.dloizides.com",
-  "author": {
-    "@type": "Person",
-    "name": "openmindednewby"
+  {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Futuristic OCR Scanner",
+    "operatingSystem": "Web",
+    "applicationCategory": "UtilityApplication",
+    "description": "A browser-based OCR scanner that extracts text from images locally using Tesseract.js.",
+    "url": "https://www.ocr-scanner.dloizides.com",
+    "author": {
+      "@type": "Person",
+      "name": "openmindednewby"
+    }
   }
-}
   </script>
 </head>
 
@@ -65,7 +65,7 @@
       </div>
       <img id="preview" alt="Image Preview">
       <div id="loading" class="loading">Processing...</div>
-        <div class="output-container">
+      <div class="output-container">
         <div id="output">Extracted text will appear here...</div>
         <button id="copyBtn" class="copy-btn" aria-label="Copy extracted text to clipboard"><i class="fas fa-copy"></i></button>
       </div>
@@ -80,7 +80,7 @@
         </div>
       </div>
       <div class="bottom-text">
-        This is not your usual sketchy website that extracts your image and sends it to a server. Everything is done locally in your browser. The OCR is performed using <a href="https://tesseract.projectnaptha.com/" target="_blank" rel="noopener">Tesseract.js</a>, a pure JavaScript port of the Tesseract OCR engine.
+        We value your privacy, everything is done locally in your browser. The OCR is performed using <a href="https://tesseract.projectnaptha.com/" target="_blank" rel="noopener">Tesseract.js</a>, a pure JavaScript port of the Tesseract OCR engine.
       </div>
     </footer>
   </div>
