@@ -1,0 +1,12 @@
+# The image does `COPY . .` into the web root, so anything not excluded here is
+# publicly served. /.git/HEAD was reachable, exposing the whole repo history.
+.git
+.github
+.gitignore
+.dockerignore
+.env*
+node_modules
+*.md
+*.tar
+*.dockerfile
+Dockerfile*
