@@ -1,1 +1,5 @@
-User-agent: * Allow: / Allow: /ocr-scanner Disallow: /private/ Sitemap: https://www.dloizides.com/sitemap.xml
+User-agent: *
+Allow: /
+Allow: /ocr-scanner
+Disallow: /private/
+Sitemap: https://ocr-scanner.dloizides.com/sitemap.xml
